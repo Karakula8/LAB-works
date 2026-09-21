@@ -73,3 +73,27 @@ fprintf('Number of samples in filtered signal: %d\n', number_filtered);
 fprintf('Number of samples exceeding U1: %d\n', number_selected);
 fprintf('Minimum value of filtered signal: %.4f V\n', min_filtered); 
 fprintf('Maximum value of filtered signal: %.4f V\n', max_filtered);
+
+%%Additional task
+clc;
+clear;
+
+A = [0 1 0 2 3 0 4;
+     0 0 0 0 0 0 0;
+     0 5 0 6 7 0 8;
+     0 9 0 1 2 0 3;
+     0 0 0 0 0 0 0;
+     0 4 0 5 6 0 7];
+
+disp('Matrix A:')
+disp(A)
+
+rows = any(A ~= 0, 2);
+
+cols = any(A ~= 0, 1);
+
+B = A(rows, cols);
+
+disp('Matrix B:')
+disp(B)
+
