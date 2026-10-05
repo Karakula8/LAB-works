@@ -44,3 +44,41 @@ zlabel('f(x,y)')
 title('Surface f(x,y) = 1 - 2x^2 - 3y^2')
 grid on
 view(45, 45)
+
+
+%% Complementary task
+xP = linspace(-2, 2, 50);
+yP = linspace(-2, 2, 50);
+
+[XP, YP] = meshgrid(xP, yP);
+
+ZP = 1 - (XP.^2 + YP.^2);
+
+figure
+
+subplot(1,3,1)
+surf(XP, YP, ZP)
+shading flat
+title('Flat shading')
+xlabel('x')
+ylabel('y')
+zlabel('z')
+grid on
+
+subplot(1,3,2)
+surf(XP, YP, ZP)
+shading faceted
+title('Faceted shading')
+xlabel('x')
+ylabel('y')
+zlabel('z')
+grid on
+
+subplot(1,3,3)
+surf(XP, YP, ZP)
+shading interp
+title('Interpolated shading')
+xlabel('x')
+ylabel('y')
+zlabel('z')
+grid on
