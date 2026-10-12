@@ -74,7 +74,7 @@ fprintf('Number of samples exceeding U1: %d\n', number_selected);
 fprintf('Minimum value of filtered signal: %.4f V\n', min_filtered); 
 fprintf('Maximum value of filtered signal: %.4f V\n', max_filtered);
 
-%%Additional task
+%% Additional task
 clc;
 clear;
 
