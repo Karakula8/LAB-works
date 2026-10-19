@@ -1,7 +1,12 @@
-%Arseniy Kaurdakou, EDIfu-25/2, 2026.09.21
+
+% Arseniy Kaurdakou, EDIfu-25/2, 2026.09.21
+% Laboratory Work 3
+
 clear;
 clc;
 close all;
+
+%% 1. Creating 2-D graphs
 
 x = linspace(-pi, pi, 70);
 
@@ -18,10 +23,9 @@ plot(x, f1, '-o', ...
 xlabel('x');
 ylabel('f_1(x)');
 title('f_1(x) = cos(x)');
+
 grid on;
-
 axis([-pi pi -1.2 1.2]);
-
 
 figure;
 
@@ -37,7 +41,7 @@ plot(x, f3, ':^', ...
 
 xlabel('x');
 ylabel('Function value');
-title('f_2(x) and f_3(x)');
+title('Functions f_2(x) and f_3(x)');
 
 legend('f_2(x) = -x^2 + 5', ...
        'f_3(x) = x^3 - 2x^2 - 5', ...
@@ -47,6 +51,9 @@ grid on;
 axis([-pi pi -60 10]);
 
 hold off;
+
+
+%% 2. Preparation of specialized plots
 
 marks = [ ...
     6 8 7 9 8;
@@ -58,8 +65,8 @@ marks = [ ...
     8 9 10 9 8;
     7 8 6 7 8];
 
-students = {'Student 1','Student 2','Student 3','Student 4', ...
-            'Student 5','Student 6','Student 7','Student 8'};
+students = {'Student 1', 'Student 2', 'Student 3', 'Student 4', ...
+            'Student 5', 'Student 6', 'Student 7', 'Student 8'};
 
 average_mark = marks * ones(5,1) / 5;
 
@@ -67,7 +74,7 @@ figure;
 
 subplot(2,1,1);
 
-bar(marks);
+bar(marks');
 
 xlabel('Laboratory session');
 ylabel('Mark');
@@ -88,7 +95,9 @@ title('Average Mark of Each Student');
 
 axis([0 9 0 10]);
 grid on;
-%%
+
+
+%% 3. Practical application
 
 A = 4;
 f = 3;
@@ -112,21 +121,26 @@ filtered(abs(filtered) < U2) = 0;
 number_filtered = length(filtered);
 number_selected = length(selected);
 
-min_filtered = min(filtered); 
+min_filtered = min(filtered);
 max_filtered = max(filtered);
 
-disp('Selected samples:') 
-disp(selected)
+disp('Selected samples:');
+disp(selected);
 
-fprintf('Number of samples in filtered signal: %d\n', number_filtered); 
-fprintf('Number of samples exceeding U1: %d\n', number_selected);
-fprintf('Minimum value of filtered signal: %.4f V\n', min_filtered); 
-fprintf('Maximum value of filtered signal: %.4f V\n', max_filtered);
+fprintf('Number of samples in filtered signal: %d\n', ...
+    number_filtered);
 
+fprintf('Number of samples exceeding U1: %d\n', ...
+    number_selected);
+
+fprintf('Minimum value of filtered signal: %.4f V\n', ...
+    min_filtered);
+
+fprintf('Maximum value of filtered signal: %.4f V\n', ...
+    max_filtered);
 
 
 figure;
-
 
 subplot(1,2,1);
 
@@ -135,9 +149,9 @@ hold on;
 
 plot(t, filtered, 'g:', 'LineWidth', 1.5);
 
-plot(t, U1 * ones(size(t)), 'k-.', 'LineWidth', 1.2);
+plot(t, U1*ones(size(t)), 'k-.', 'LineWidth', 1.2);
 
-plot(t, U2 * ones(size(t)), 'r--', 'LineWidth', 1.2);
+plot(t, U2*ones(size(t)), 'r--', 'LineWidth', 1.2);
 
 xlabel('Time (s)', 'FontWeight', 'bold', 'FontSize', 13);
 ylabel('Voltage (V)', 'FontWeight', 'bold', 'FontSize', 13);
@@ -152,13 +166,14 @@ legend('Original signal', ...
 
 grid on;
 
-axis([min(t) max(t) min([x filtered U1 U2])-0.5 ...
-                         max([x filtered U1 U2])+0.5]);
+axis([min(t) max(t) ...
+      min([x filtered U1 U2])-0.5 ...
+      max([x filtered U1 U2])+0.5]);
 
 hold off;
 
 
-
+% Second subplot
 subplot(1,2,2);
 
 idx = x > U1;
@@ -193,15 +208,16 @@ legend('x(t) > U_1', ...
 
 grid on;
 
-axis([min(t) max(t) min([x])-0.5 max([x])+0.5]);
+axis([min(t) max(t) ...
+      min(x)-0.5 max(x)+0.5]);
 
 hold off;
 
 
-%% Additional task
+%% 4. Additional task
 
-clc;
 clear;
+clc;
 
 A = [0 1 0 2 3 0 4;
      0 0 0 0 0 0 0;
@@ -210,4 +226,14 @@ A = [0 1 0 2 3 0 4;
      0 0 0 0 0 0 0;
      0 4 0 5 6 0 7];
 
-...
+disp('Original matrix A:');
+disp(A);
+
+rows = any(A ~= 0, 2);
+
+cols = any(A ~= 0, 1);
+
+B = A(rows, cols);
+
+disp('Matrix B after removing zero-only rows and columns:');
+disp(B);
